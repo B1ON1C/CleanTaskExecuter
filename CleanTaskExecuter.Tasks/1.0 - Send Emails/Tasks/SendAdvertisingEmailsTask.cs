@@ -5,9 +5,9 @@ namespace CleanTaskExecuter.Tasks._1._0___Send_Emails.Tasks;
 
 internal class SendAdvertisingEmailsTask : ITask<AdvertisingEmail, object?>
 {
-    public int TasksPool => (int)TasksPools.SendEmailsPool;
+    public int TaskPool => (int)TaskPools.SendEmailsPool;
 
-    public int OrderInTasksPool => 3;
+    public int OrderInTaskPool => 3;
 
     public string TaskName => "Send advertising emails task";
 

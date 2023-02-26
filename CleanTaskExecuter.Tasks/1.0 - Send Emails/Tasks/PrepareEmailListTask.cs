@@ -5,8 +5,8 @@ namespace CleanTaskExecuter.Tasks._1._0___Send_Emails.Tasks;
 
 internal class PrepareEmailListTask : ITask<object?, EmailList>
 {
-    public int TasksPool => (int)TasksPools.SendEmailsPool;
-    public int OrderInTasksPool => 1;
+    public int TaskPool => (int)TaskPools.SendEmailsPool;
+    public int OrderInTaskPool => 1;
     public string TaskName => "Prepare emails task";
     public string TaskDescription => "Prepare (get and clean) emails list";
     public (bool, EmailList) Execute(object? args)

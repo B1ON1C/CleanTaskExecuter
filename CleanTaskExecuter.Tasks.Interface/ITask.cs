@@ -2,8 +2,8 @@
 
 public interface ITask<T, TResult>
 {
-    int TasksPool { get; }
-    int OrderInTasksPool { get; }
+    int TaskPool { get; }
+    int OrderInTaskPool { get; }
     string TaskName { get; }
     string TaskDescription { get; }
     (bool, TResult) Execute(T arg);
