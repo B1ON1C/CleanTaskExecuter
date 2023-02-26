@@ -1,7 +1,9 @@
 ﻿using CleanTaskExecuter.TaskController;
-using CleanTaskExecuter.Tasks;
+using System.Reflection;
 
-var tasksAssembly = typeof(TasksPools).Assembly;
+const string TasksAssemblyName = "CleanTaskExecuter.Tasks";
+var tasksAssembly = Assembly.Load(TasksAssemblyName);
+
 var taskController = new TaskController(tasksAssembly);
 taskController.LoadTasksFromAssembly();
 taskController.ExecuteTasks();

@@ -1,6 +1,6 @@
 ﻿namespace CleanTaskExecuter.Tasks;
 
-public enum TasksPools
+internal enum TasksPools
 {
     SendEmailsPool = 0
 }

@@ -3,7 +3,7 @@ using CleanTaskExecuter.Tasks.Interface;
 
 namespace CleanTaskExecuter.Tasks._1._0___Send_Emails.Tasks;
 
-public class PrepareEmailsTask : ITask<object?, EmailList>
+internal class PrepareEmailsTask : ITask<object?, EmailList>
 {
     public int TasksPool => (int)TasksPools.SendEmailsPool;
 
