@@ -23,8 +23,6 @@ public class TaskController
     {
         const string TasksPool = "TasksPool";
         const string OrderInTasksPool = "OrderInTasksPool";
-        const string TaskName = "TaskName";
-        const string TaskDescription = "TaskDescription";
         const string ExecuteMethod = "Execute";
 
         Tasks

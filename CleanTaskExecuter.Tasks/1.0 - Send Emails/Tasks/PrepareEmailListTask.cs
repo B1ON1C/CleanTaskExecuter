@@ -3,18 +3,23 @@ using CleanTaskExecuter.Tasks.Interface;
 
 namespace CleanTaskExecuter.Tasks._1._0___Send_Emails.Tasks;
 
-internal class PrepareEmailsTask : ITask<object?, EmailList>
+internal class PrepareEmailListTask : ITask<object?, EmailList>
 {
     public int TasksPool => (int)TasksPools.SendEmailsPool;
-
     public int OrderInTasksPool => 1;
-
     public string TaskName => "Prepare emails task";
-
     public string TaskDescription => "Prepare (get and clean) emails list";
-
     public (bool, EmailList) Execute(object? args)
     {
-        return (true, new EmailList());
+        return (true, new EmailList(GenerateDummyEmails().ToList()));
+    }
+
+    private IEnumerable<string> GenerateDummyEmails()
+    {
+        yield return "dummyemailA@gmail.com";
+        yield return "dummyemailB@gmail.com";
+        yield return "dummyemailC@gmail.com";
+        yield return "dummyemailD@gmail.com";
+        yield return "dummyemailE@gmail.com";
     }
 }

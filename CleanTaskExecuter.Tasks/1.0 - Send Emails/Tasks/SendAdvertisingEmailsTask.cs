@@ -3,18 +3,24 @@ using CleanTaskExecuter.Tasks.Interface;
 
 namespace CleanTaskExecuter.Tasks._1._0___Send_Emails.Tasks;
 
-internal class SendAdvertisingEmailsTask : ITask<EmailList, object?>
+internal class SendAdvertisingEmailsTask : ITask<AdvertisingEmail, object?>
 {
     public int TasksPool => (int)TasksPools.SendEmailsPool;
 
-    public int OrderInTasksPool => 2;
+    public int OrderInTasksPool => 3;
 
     public string TaskName => "Send advertising emails task";
 
-    public string TaskDescription => "Send advertising emails to all subscribed (and cleaned) emails list";
+    public string TaskDescription => "Send advertising emails to all subscribed email list";
 
-    public (bool, object?) Execute(EmailList args)
+    public (bool, object?) Execute(AdvertisingEmail advertisingEmail)
     {
+        DummySendEmails(advertisingEmail);
         return (true, null);
+    }
+
+    private void DummySendEmails(AdvertisingEmail advertisingEmail)
+    {
+        advertisingEmail.emailList.Emails.ToList().ForEach(email => Thread.Sleep(100));
     }
 }
