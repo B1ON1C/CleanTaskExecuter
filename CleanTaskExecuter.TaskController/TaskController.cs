@@ -28,27 +28,34 @@ public class TaskController
         Tasks
             .Select(Activator.CreateInstance)
             .Where(taskInstance => taskInstance != null)
-            .GroupBy(taskInstance => taskInstance!.GetType().GetField(TasksPool))
+            .GroupBy(taskInstance => taskInstance!.GetType().GetProperty(TasksPool)!.GetValue(taskInstance))
+            .Where(taskGroup => taskGroup.Key != null)
             .OrderBy(taskGrouped => taskGrouped.Key)
             .ToList()
             .ForEach(taskGroups =>
             {
-                object lastTaskExecutionResult = null;
-                foreach (var taskInstance in taskGroups.OrderBy(taskGroup => taskGroup!.GetType().GetField(OrderInTasksPool)).ToList())
-                {
-                    lastTaskExecutionResult = taskInstance!
-                                            .GetType()
-                                            .GetMethod(ExecuteMethod)!
-                                            .Invoke(taskInstance, new[] { lastTaskExecutionResult?.GetType()?.GetFields()?[1].GetValue(lastTaskExecutionResult) })!;
+                var lastTaskExecutionResult = (object?)null;
+                var continueExecutingPoolTasks = true;
 
-                    var executeOk = lastTaskExecutionResult?.GetType()?.GetFields()?[0].GetValue(lastTaskExecutionResult);
-                    var result = lastTaskExecutionResult?.GetType()?.GetFields()?[1].GetValue(lastTaskExecutionResult);
-
-                    if (!(bool)executeOk)
+                taskGroups
+                    .OrderBy(taskGroup => taskGroup!.GetType()!.GetProperty(OrderInTasksPool)!.GetValue(taskGroup))
+                    .ToList()
+                    .ForEach(taskInstance =>
                     {
-                        break;
-                    }
-                }
+                        if (!continueExecutingPoolTasks)
+                        {
+                            return;
+                        }
+
+                        var lastTaskExecutionEntity = lastTaskExecutionResult?.GetType()?.GetFields()?[1].GetValue(lastTaskExecutionResult);
+                        lastTaskExecutionResult = taskInstance!
+                                                    .GetType()!
+                                                    .GetMethod(ExecuteMethod)!
+                                                    .Invoke(taskInstance, new[] { lastTaskExecutionEntity });
+
+                        var lastTaskExecutionSuccess = lastTaskExecutionResult?.GetType()?.GetFields()?[0].GetValue(lastTaskExecutionResult);
+                        continueExecutingPoolTasks = (bool)lastTaskExecutionSuccess!;
+                    });
             });
 
         return ExecutionStatus.Ok;
