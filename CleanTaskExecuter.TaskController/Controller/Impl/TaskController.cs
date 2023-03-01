@@ -27,7 +27,7 @@ public class TaskController : ITaskController
         Tasks = GetTasksInTypesList(tasksList);
         if (Tasks.Count == 0)
         {
-            throw new AssemblyTasksNotFoundException($"No Tasks found");
+            throw new TasksNotFoundException($"No Tasks were found");
         }
     }
 
