@@ -6,13 +6,13 @@ using System.Reflection;
 
 namespace CleanTaskExecuter.TaskController;
 
-public class TaskController
+public class TaskController : ITaskController
 {
     private IImmutableList<Type> Tasks { get; set; } = default!;
     public TaskController(IList<Type> tasksList) => LoadTasksFromTypesList(tasksList);
     public TaskController(Assembly tasksAssembly) : this(tasksAssembly.GetTypes()) { }
 
-    public ExecutionStatus ExecuteTasks()
+    ExecutionStatus ITaskController.ExecuteTasks()
     {
         GroupTasksByPool()
             .ToList()
