@@ -1,4 +1,5 @@
 ﻿using CleanTaskExecuter.TaskController.Enums;
+using CleanTaskExecuter.TaskController.Exceptions;
 using CleanTaskExecuter.Tasks.Interface;
 using System.Collections.Immutable;
 using System.Reflection;
@@ -7,17 +8,9 @@ namespace CleanTaskExecuter.TaskController;
 
 public class TaskController
 {
-    private Assembly TasksAssembly { get; }
     private IImmutableList<Type> Tasks { get; set; } = default!;
-    public TaskController(Assembly tasksAssembly)
-    {
-        TasksAssembly = tasksAssembly ?? throw new ArgumentNullException(nameof(tasksAssembly));
-    }
-
-    public void LoadTasksFromAssembly()
-    {
-        Tasks = GetTasksInAssembly(TasksAssembly);
-    }
+    public TaskController(IList<Type> tasksList) => LoadTasksFromTypesList(tasksList);
+    public TaskController(Assembly tasksAssembly) : this(tasksAssembly.GetTypes()) { }
 
     public ExecutionStatus ExecuteTasks()
     {
@@ -28,9 +21,17 @@ public class TaskController
         return ExecutionStatus.Ok;
     }
 
-    private IImmutableList<Type> GetTasksInAssembly(Assembly TasksAssembly) =>
-        TasksAssembly
-            .GetTypes()
+    private void LoadTasksFromTypesList(IList<Type> tasksList)
+    {
+        Tasks = GetTasksInTypesList(tasksList);
+        if (Tasks.Count == 0)
+        {
+            throw new AssemblyTasksNotFoundException($"No Tasks found");
+        }
+    }
+
+    private IImmutableList<Type> GetTasksInTypesList(IList<Type> typesList) =>
+        typesList
             .Where(type => type.GetInterface(typeof(ITask<,>).Name) != null)
             .ToImmutableList();
 
