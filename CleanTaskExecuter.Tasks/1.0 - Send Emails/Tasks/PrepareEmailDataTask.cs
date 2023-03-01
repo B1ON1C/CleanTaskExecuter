@@ -5,12 +5,12 @@ namespace CleanTaskExecuter.Tasks._1._0___Send_Emails.Tasks;
 
 internal class PrepareEmailDataTask : ITask<EmailList, AdvertisingEmail>
 {
-    int ITask<EmailList, AdvertisingEmail>.TaskPool => (int)TaskPools.SendEmailsPool;
-    int ITask<EmailList, AdvertisingEmail>.OrderInTaskPool => 2;
-    string ITask<EmailList, AdvertisingEmail>.TaskName => "Prepare email details (title and body)";
-    string ITask<EmailList, AdvertisingEmail>.TaskDescription => "Prepare email data in HTML";
+    public int TaskPool => (int)TaskPools.SendEmailsPool;
+    public int OrderInTaskPool => 2;
+    public string TaskName => "Prepare email details (title and body)";
+    public string TaskDescription => "Prepare email data in HTML";
 
-    (bool, AdvertisingEmail) ITask<EmailList, AdvertisingEmail>.Execute(EmailList emailList)
+    public (bool, AdvertisingEmail) Execute(EmailList emailList)
     {
         return (true, new AdvertisingEmail(emailList, GenerateDummyEmailData()));
     }

@@ -5,11 +5,11 @@ namespace CleanTaskExecuter.Tasks._1._0___Send_Emails.Tasks;
 
 internal class PrepareEmailListTask : ITask<object?, EmailList>
 {
-    int ITask<object?, EmailList>.TaskPool => (int)TaskPools.SendEmailsPool;
-    int ITask<object?, EmailList>.OrderInTaskPool => 1;
-    string ITask<object?, EmailList>.TaskName => "Prepare emails task";
-    string ITask<object?, EmailList>.TaskDescription => "Prepare (get and clean) emails list";
-    (bool, EmailList) ITask<object?, EmailList>.Execute(object? args)
+    public int TaskPool => (int)TaskPools.SendEmailsPool;
+    public int OrderInTaskPool => 1;
+    public string TaskName => "Prepare emails task";
+    public string TaskDescription => "Prepare (get and clean) emails list";
+    public (bool, EmailList) Execute(object? args)
     {
         return (true, new EmailList(GenerateDummyEmails().ToList()));
     }
