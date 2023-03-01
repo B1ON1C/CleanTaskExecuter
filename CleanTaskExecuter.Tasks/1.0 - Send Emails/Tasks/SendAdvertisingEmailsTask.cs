@@ -5,15 +5,15 @@ namespace CleanTaskExecuter.Tasks._1._0___Send_Emails.Tasks;
 
 internal class SendAdvertisingEmailsTask : ITask<AdvertisingEmail, object?>
 {
-    public int TaskPool => (int)TaskPools.SendEmailsPool;
+    int ITask<AdvertisingEmail, object?>.TaskPool => (int)TaskPools.SendEmailsPool;
 
-    public int OrderInTaskPool => 3;
+    int ITask<AdvertisingEmail, object?>.OrderInTaskPool => 3;
 
-    public string TaskName => "Send advertising emails task";
+    string ITask<AdvertisingEmail, object?>.TaskName => "Send advertising emails task";
 
-    public string TaskDescription => "Send advertising emails to all subscribed email list";
+    string ITask<AdvertisingEmail, object?>.TaskDescription => "Send advertising emails to all subscribed email list";
 
-    public (bool, object?) Execute(AdvertisingEmail advertisingEmail)
+    (bool, object?) ITask<AdvertisingEmail, object?>.Execute(AdvertisingEmail advertisingEmail)
     {
         DummySendEmails(advertisingEmail);
         return (true, null);
