@@ -1,6 +1,6 @@
 ﻿using CleanTaskExecuter.TaskController.Enums;
 
-namespace CleanTaskExecuter.TaskController;
+namespace CleanTaskExecuter.TaskController.Controller.Iface;
 
 public interface ITaskController
 {

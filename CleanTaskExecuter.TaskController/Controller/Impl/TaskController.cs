@@ -1,10 +1,11 @@
-﻿using CleanTaskExecuter.TaskController.Enums;
+﻿using CleanTaskExecuter.TaskController.Controller.Iface;
+using CleanTaskExecuter.TaskController.Enums;
 using CleanTaskExecuter.TaskController.Exceptions;
 using CleanTaskExecuter.Tasks.Interface;
 using System.Collections.Immutable;
 using System.Reflection;
 
-namespace CleanTaskExecuter.TaskController;
+namespace CleanTaskExecuter.TaskController.Controller.Impl;
 
 public class TaskController : ITaskController
 {

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanTaskExecuter.TaskController", "CleanTaskExecuter.TaskController\CleanTaskExecuter.TaskController.csproj", "{D7513277-A333-43A6-A780-BA6AE2C27629}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanTaskExecuter.Tasks.Interface", "CleanTaskExecuter.Tasks.Interface\CleanTaskExecuter.Tasks.Interface.csproj", "{4C9080E9-C716-4354-BED6-E1F1E4AC719F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanTaskExecuter.Tasks.Interface", "CleanTaskExecuter.Tasks.Interface\CleanTaskExecuter.Tasks.Interface.csproj", "{4C9080E9-C716-4354-BED6-E1F1E4AC719F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanTaskExecuter.Tasks", "CleanTaskExecuter.Tasks\CleanTaskExecuter.Tasks.csproj", "{2608922C-BD58-4048-8961-F1E19AE2D7FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanTaskExecuter.Tasks", "CleanTaskExecuter.Tasks\CleanTaskExecuter.Tasks.csproj", "{2608922C-BD58-4048-8961-F1E19AE2D7FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanTaskExecuter.Console", "CleanTaskExecuter.Console\CleanTaskExecuter.Console.csproj", "{4013FA03-13FE-4093-983A-930AC7D43B40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanTaskExecuter.Console", "CleanTaskExecuter.Console\CleanTaskExecuter.Console.csproj", "{4013FA03-13FE-4093-983A-930AC7D43B40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
