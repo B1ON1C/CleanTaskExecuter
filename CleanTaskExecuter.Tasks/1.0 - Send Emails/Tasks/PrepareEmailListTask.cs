@@ -14,7 +14,7 @@ internal class PrepareEmailListTask : ITask<object?, EmailList>
         return (true, new EmailList(GenerateDummyEmails().ToList()));
     }
 
-    private IEnumerable<string> GenerateDummyEmails()
+    IEnumerable<string> GenerateDummyEmails()
     {
         yield return "dummyemailA@gmail.com";
         yield return "dummyemailB@gmail.com";
