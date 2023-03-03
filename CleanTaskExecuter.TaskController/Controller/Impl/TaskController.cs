@@ -52,7 +52,6 @@ public class TaskController : ITaskController
 			.Select(Activator.CreateInstance)
 			.GroupBy(taskInstance => taskInstance!.GetType().GetProperty(TaskPool)!.GetValue(taskInstance))
 			.OrderBy(taskGrouped => taskGrouped.Key)!;
-
 	void ProcessTaskPool(IGrouping<object, object> taskGroups)
 	{
 		var lastTaskExecutionResult = (object?)null;
