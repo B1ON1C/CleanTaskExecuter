@@ -19,7 +19,7 @@ internal class SendAdvertisingEmailsTask : ITask<AdvertisingEmail, object?>
         return (true, null);
     }
 
-    void DummySendEmails(AdvertisingEmail advertisingEmail)
+    private void DummySendEmails(AdvertisingEmail advertisingEmail)
     {
         advertisingEmail.emailList.Emails.ToList().ForEach(email => Thread.Sleep(100));
     }

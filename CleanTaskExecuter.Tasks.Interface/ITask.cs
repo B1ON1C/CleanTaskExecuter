@@ -6,5 +6,6 @@ public interface ITask<T, TResult>
     int OrderInTaskPool { get; }
     string TaskName { get; }
     string TaskDescription { get; }
+
     (bool, TResult) Execute(T arg);
 }

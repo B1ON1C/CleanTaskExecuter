@@ -15,7 +15,7 @@ internal class PrepareEmailDataTask : ITask<EmailList, AdvertisingEmail>
         return (true, new AdvertisingEmail(emailList, GenerateDummyEmailData()));
     }
 
-    EmailData GenerateDummyEmailData()
+    private EmailData GenerateDummyEmailData()
     {
         return new EmailData("DUMMY EMAIL TITLE", "DUMMY EMAIL BODY");
     }

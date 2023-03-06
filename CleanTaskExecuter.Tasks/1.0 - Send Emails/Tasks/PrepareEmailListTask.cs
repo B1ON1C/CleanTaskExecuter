@@ -9,12 +9,13 @@ internal class PrepareEmailListTask : ITask<object?, EmailList>
     public int OrderInTaskPool => 1;
     public string TaskName => "Prepare emails task";
     public string TaskDescription => "Prepare (get and clean) emails list";
+
     public (bool, EmailList) Execute(object? args)
     {
         return (true, new EmailList(GenerateDummyEmails().ToList()));
     }
 
-    IEnumerable<string> GenerateDummyEmails()
+    private IEnumerable<string> GenerateDummyEmails()
     {
         yield return "dummyemailA@gmail.com";
         yield return "dummyemailB@gmail.com";
