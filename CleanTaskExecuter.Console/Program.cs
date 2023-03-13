@@ -5,5 +5,5 @@ using System.Reflection;
 const string TasksAssemblyName = "CleanTaskExecuter.Tasks";
 var tasksAssembly = Assembly.Load(TasksAssemblyName);
 
-var taskController = (ITaskController)new TaskController(tasksAssembly);
+var taskController = (ITaskController)new DefaultTaskController(tasksAssembly);
 taskController.ExecuteTasks();

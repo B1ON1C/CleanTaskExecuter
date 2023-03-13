@@ -2,5 +2,5 @@
 
 internal enum TaskPools
 {
-    SendEmailsPool = 0
+	SendEmailsPool = 0
 }

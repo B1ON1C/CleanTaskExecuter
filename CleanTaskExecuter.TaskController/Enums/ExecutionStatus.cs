@@ -1,8 +1,7 @@
-﻿namespace CleanTaskExecuter.TaskController.Enums
+﻿namespace CleanTaskExecuter.TaskController.Enums;
+
+public enum ExecutionStatus
 {
-    public enum ExecutionStatus
-    {
-        Ok,
-        Fail
-    }
+	Ok,
+	Fail
 }
