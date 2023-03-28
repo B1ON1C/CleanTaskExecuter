@@ -17,18 +17,18 @@ public class DefaultTaskExecuter : ITaskExecuter
 			var _ => tasksGroupedByPool.Any() ? tasksGroupedByPool : throw new TasksNotFoundException("No Tasks to execute"),
 		};
 
-	public void ExecuteTasks()
+	public void ExecuteTasks() =>
+		Task.WaitAll(TasksGroupedByPool
+			.Select(taskPool => Task.Factory.StartNew(() => ProcessTaskPool(taskPool)))
+			.ToArray());
+
+	private void ProcessTaskPool(IGrouping<object, object> tasksPool)
 	{
-		TasksGroupedByPool
+		var lastTaskExecutionResult = (object?)null;
+		tasksPool
+			.OrderBy(taskGroup => taskGroup.GetType().GetProperty(OrderInTaskPool)!.GetValue(taskGroup))
 			.ToList()
-			.ForEach(tasksPool =>
-			{
-				var lastTaskExecutionResult = (object?)null;
-				tasksPool
-					.OrderBy(taskGroup => taskGroup.GetType().GetProperty(OrderInTaskPool)!.GetValue(taskGroup))
-					.ToList()
-					.ForEach(taskInstance => lastTaskExecutionResult = ExecuteTask(taskInstance, lastTaskExecutionResult));
-			});
+			.ForEach(taskInstance => lastTaskExecutionResult = ExecuteTask(taskInstance, lastTaskExecutionResult));
 	}
 
 	private object ExecuteTask(object taskInstance, object? lastTaskExecutionResult)

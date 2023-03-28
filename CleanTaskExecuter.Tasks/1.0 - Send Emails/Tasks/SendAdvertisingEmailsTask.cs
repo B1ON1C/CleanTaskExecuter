@@ -19,8 +19,6 @@ internal class SendAdvertisingEmailsTask : ITask<AdvertisingEmail, object?>
 		return (true, null);
 	}
 
-	private void DummySendEmails(AdvertisingEmail advertisingEmail)
-	{
-		advertisingEmail.emailList.Emails.ToList().ForEach(email => Thread.Sleep(100));
-	}
+	private void DummySendEmails(AdvertisingEmail advertisingEmail) =>
+		advertisingEmail.emailList.Emails.ToList().ForEach(email => Task.Delay(100));
 }

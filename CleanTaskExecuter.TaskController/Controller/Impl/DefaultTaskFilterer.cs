@@ -26,14 +26,14 @@ public class DefaultTaskFilterer : ITaskFilterer
 	{ }
 
 	public IImmutableList<Type> FilterTasks() =>
-	FilterTasksFromTypesList() switch
-	{
-		{ Count: 0 } => throw new TasksNotFoundException("No Tasks were found"),
-		var filteredTasksFromTypesList => filteredTasksFromTypesList
-	};
+		FilterTasksFromTypesList() switch
+		{
+			{ Count: 0 } => throw new TasksNotFoundException("No Tasks were found"),
+			var filteredTasksFromTypesList => filteredTasksFromTypesList
+		};
 
 	private IImmutableList<Type> FilterTasksFromTypesList() =>
-	Types
-		.Where(type => type.GetInterface(typeof(ITask<,>).Name) is not null)
-		.ToImmutableList();
+		Types
+			.Where(type => type.GetInterface(typeof(ITask<,>).Name) is not null)
+			.ToImmutableList();
 }

@@ -10,13 +10,9 @@ internal class PrepareEmailDataTask : ITask<EmailList, AdvertisingEmail>
 	public string TaskName => "Prepare email details (title and body)";
 	public string TaskDescription => "Prepare email data in HTML";
 
-	public (bool, AdvertisingEmail) Execute(EmailList emailList)
-	{
-		return (true, new AdvertisingEmail(emailList, GenerateDummyEmailData()));
-	}
+	public (bool, AdvertisingEmail) Execute(EmailList emailList) =>
+		(true, new AdvertisingEmail(emailList, GenerateDummyEmailData()));
 
-	private EmailData GenerateDummyEmailData()
-	{
-		return new EmailData("DUMMY EMAIL TITLE", "DUMMY EMAIL BODY");
-	}
+	private EmailData GenerateDummyEmailData() =>
+		new EmailData("DUMMY EMAIL TITLE", "DUMMY EMAIL BODY");
 }

@@ -10,10 +10,8 @@ internal class PrepareEmailListTask : ITask<object?, EmailList>
 	public string TaskName => "Prepare emails task";
 	public string TaskDescription => "Prepare (get and clean) emails list";
 
-	public (bool, EmailList) Execute(object? args)
-	{
-		return (true, new EmailList(GenerateDummyEmails().ToList()));
-	}
+	public (bool, EmailList) Execute(object? args) =>
+		(true, new EmailList(GenerateDummyEmails().ToList()));
 
 	private IEnumerable<string> GenerateDummyEmails()
 	{
